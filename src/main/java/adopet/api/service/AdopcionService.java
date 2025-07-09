@@ -7,6 +7,7 @@ import adopet.api.model.Tutor;
 import adopet.api.repository.AdopcionRepository;
 import adopet.api.repository.PetRepository;
 import adopet.api.repository.TutorRepository;
+import jakarta.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
