@@ -10,16 +10,19 @@ public class PilaDeEjecucion {
     public static void metodo2() {
         System.out.println("[Inicio] - metodo2");
 
-        Usuario usuario = new Usuario("Roque");
+        Usuario usuario = null;
         System.out.println(usuario.nombre);
-
         System.out.println("[Fin] - metodo2");
     }
 
     public static void main(String[] args) {
         System.out.println("[Inicio] - main");
 
-        metodo1();
+        try{
+            metodo1();
+        }catch (NullPointerException ex){
+            System.out.println("Usuario no encontrado");
+        }
 
         System.out.println("[Fin] - main");
     }
