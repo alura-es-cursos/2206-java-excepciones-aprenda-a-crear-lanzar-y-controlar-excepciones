@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 
+import java.io.IOException;
 import java.util.List;
 
 @Service
@@ -23,7 +24,7 @@ public class PetService {
     public List<PetDTO> listarTodos(){
         return repository.findAll().stream().map(PetDTO::new).toList();
     }
-    public void registrar(RegistroPetDTO dto, MultipartFile imagen){
+    public void registrar(RegistroPetDTO dto, MultipartFile imagen) throws IOException {
 
         String nombreImagen = imagenService.upload(imagen);
 

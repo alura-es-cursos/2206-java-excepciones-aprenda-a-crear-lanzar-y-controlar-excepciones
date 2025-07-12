@@ -4,6 +4,7 @@ import adopet.api.dto.AdopcionDTO;
 import adopet.api.dto.AprobarAdopcionDTO;
 import adopet.api.dto.RechazarAdopcionDTO;
 import adopet.api.dto.SolicitudDeAdopcionDTO;
+import adopet.api.exception.AdopcionException;
 import adopet.api.service.AdopcionService;
 import jakarta.persistence.EntityNotFoundException;
 import jakarta.validation.Valid;
@@ -39,7 +40,7 @@ public class AdopcionController {
     public ResponseEntity<String> solicitar(@RequestBody @Valid SolicitudDeAdopcionDTO datos){
         try{
             this.service.solicitar(datos);
-        }catch (IllegalArgumentException | UnsupportedOperationException ex){
+        }catch (AdopcionException ex){
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(ex.getMessage());
         }
         return ResponseEntity.ok("Adopción solicitada con éxito!");
