@@ -37,7 +37,11 @@ public class AdopcionController {
     @PostMapping
     @Transactional
     public ResponseEntity<String> solicitar(@RequestBody @Valid SolicitudDeAdopcionDTO datos){
-        this.service.solicitar(datos);
+        try{
+            this.service.solicitar(datos);
+        }catch (IllegalArgumentException | UnsupportedOperationException ex){
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(ex.getMessage());
+        }
         return ResponseEntity.ok("Adopción solicitada con éxito!");
     }
 
