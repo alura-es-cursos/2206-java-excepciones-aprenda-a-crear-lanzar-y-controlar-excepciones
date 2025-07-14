@@ -38,22 +38,14 @@ public class AdopcionController {
     @PostMapping
     @Transactional
     public ResponseEntity<String> solicitar(@RequestBody @Valid SolicitudDeAdopcionDTO datos){
-        try{
-            this.service.solicitar(datos);
-        }catch (AdopcionException ex){
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(ex.getMessage());
-        }
+        this.service.solicitar(datos);
         return ResponseEntity.ok("Adopción solicitada con éxito!");
     }
 
     @PutMapping("/aprobar")
     @Transactional
     public ResponseEntity<String> aprobar(@RequestBody @Valid AprobarAdopcionDTO dto){
-        try{
-            this.service.aprobar(dto);
-        }catch (EntityNotFoundException ex){
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Adopción no encontrada -> "+ex.getMessage());
-        }
+        this.service.aprobar(dto);
         return ResponseEntity.ok().build();
     }
 
